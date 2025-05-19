@@ -1,20 +1,25 @@
-//index.js
-//npm install express
-
 const express = require("express");
+const blogRoutes = require('./src/routes/bookRoutes');
+
 
 const app = express();
 app.use(express.json());
+
+app.use('/api', blogRoutes)
+
+
 const books = [];
 
 const generateId = (array) => {
   return array.push() + 1;
 };
 
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
   res.send({
     message: "welcome to our book store",
   });
+  next()
+  console.log(next())
   console.log(req.body);
 });
 
